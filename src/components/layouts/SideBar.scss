@@ -1,0 +1,41 @@
+.siderBar {
+  display: flex;
+  flex: 0.35;
+  height: 100vh;
+
+  .sideBar-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px;
+    background-color: #1a1c20;
+    .server-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 9999px;
+      background-color: #33363d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      + .server-icon {
+        margin-top: 10px;
+      }
+      img {
+        width: 42px;
+      }
+    }
+  }
+
+  .sideBar-right {
+    background-color: #2b2d33;
+    width: 300px;
+
+    .siderBar-top {
+      color: white; // Temp
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
