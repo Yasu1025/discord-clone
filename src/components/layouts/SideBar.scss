@@ -29,13 +29,28 @@
   .sideBar-right {
     background-color: #2b2d33;
     width: 300px;
-
+    color: white; // Temp
     .siderBar-top {
-      color: white; // Temp
       padding: 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+    .channels {
+      padding: 14px;
+      .channels-header {
+        display: flex;
+        justify-content: space-between;
+        .channel-header {
+          display: flex;
+        }
+        .channel-add {
+          cursor: pointer;
+        }
+      }
+      .channels-list {
+        padding: 8px 0;
+      }
     }
   }
 }

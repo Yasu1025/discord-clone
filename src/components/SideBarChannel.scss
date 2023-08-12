@@ -1,0 +1,19 @@
+.sideBarChannel {
+  h5 {
+    color: #7b7c85;
+    display: flex;
+    align-items: center;
+    padding: 8px 20px;
+
+    cursor: pointer;
+    &:hover {
+      color: white;
+      background-color: #33363d;
+    }
+
+    .sideBarChannel-hash {
+      font-size: 22px;
+      margin-right: 8px;
+    }
+  }
+}

@@ -1,5 +1,6 @@
-import { ExpandMore } from '@mui/icons-material'
+import { Add, ExpandMore } from '@mui/icons-material'
 import React from 'react'
+import SideBarChannel from '../SideBarChannel'
 import './SideBar.scss'
 
 function SiderBar() {
@@ -17,7 +18,21 @@ function SiderBar() {
         <div className='siderBar-top'>
           <h3>Discordish</h3>
           <ExpandMore />
-          {/* TODO; SideBar channels */}
+        </div>
+        {/* TODO; SideBar channels */}
+        <div className='channels'>
+          <div className='channels-header'>
+            <div className='channel-header'>
+              <ExpandMore />
+              <h4>チャンネル親</h4>
+            </div>
+            <Add className='channel-add' />
+          </div>
+          <div className='channels-list'>
+            <SideBarChannel />
+            <SideBarChannel />
+            <SideBarChannel />
+          </div>
         </div>
       </div>
     </div>
