@@ -1,0 +1,14 @@
+.chat-wrap {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #34373c;
+  position: relative;
+  height: 100vh;
+
+  .chat-msg-wrap {
+    // flex-grow: 1;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+}

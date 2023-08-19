@@ -9,9 +9,9 @@ function SiderBar() {
     <div className='siderBar'>
       <div className='sideBar-left'>
         <div className='server-icon'>
-          <img src='./logo192.png' alt='' />
+          <img src='./discordIcon.png' alt='' />
         </div>
-        <div className='server-icon'>
+        <div className='server-icon round'>
           <img src='./logo192.png' alt='' />
         </div>
       </div>

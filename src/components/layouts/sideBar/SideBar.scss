@@ -16,11 +16,13 @@
     .server-icon {
       width: 52px;
       height: 52px;
-      border-radius: 9999px;
-      background-color: #33363d;
       display: flex;
       align-items: center;
       justify-content: center;
+      &.round {
+        border-radius: 9999px;
+        background-color: #33363d;
+      }
       + .server-icon {
         margin-top: 10px;
       }
@@ -34,6 +36,7 @@
     background-color: #2b2d33;
     width: 300px;
     position: relative;
+    flex-grow: 1;
     .siderBar-top {
       padding: 20px;
       display: flex;
