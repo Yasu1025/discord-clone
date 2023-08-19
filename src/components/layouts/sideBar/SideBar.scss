@@ -3,6 +3,10 @@
   flex: 0.35;
   height: 100vh;
 
+  .lead {
+    color: white;
+  }
+
   .sideBar-left {
     display: flex;
     flex-direction: column;
@@ -29,7 +33,7 @@
   .sideBar-right {
     background-color: #2b2d33;
     width: 300px;
-    color: white; // Temp
+    position: relative;
     .siderBar-top {
       padding: 20px;
       display: flex;
