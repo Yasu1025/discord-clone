@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.scss'
-import SiderBar from './components/layouts/SiderBar'
+import SiderBar from './components/layouts/sideBar/SiderBar'
 
 function App() {
   return (

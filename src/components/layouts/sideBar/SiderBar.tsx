@@ -1,6 +1,6 @@
 import { Add, ExpandMore } from '@mui/icons-material'
 import React from 'react'
-import SideBarChannel from '../SideBarChannel'
+import SideBarChannel from './SideBarChannel'
 import './SideBar.scss'
 
 function SiderBar() {
