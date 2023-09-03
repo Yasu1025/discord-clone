@@ -1,29 +1,16 @@
 import { Add, ExpandMore } from '@mui/icons-material'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import SideBarChannel from './SideBarChannel'
 import './SideBar.scss'
 import SideBarSettings from './SideBarSettings'
-import { onSnapshot, collection, query } from 'firebase/firestore'
-import { db } from '../../../firebase'
 import { COLLECTIONS } from '../../../consts/consts'
+import useCollection from '../../../hooks/useCollection'
 import { Channel } from '../../../models/Channel'
 
 const SiderBar = () => {
-  const [channels, setChannels] = useState<Channel[]>([])
-  const q = query(collection(db, COLLECTIONS.CHANNELS))
-
-  useEffect(() => {
-    onSnapshot(q, querySnapshot => {
-      const channelsRslt: Channel[] = []
-      querySnapshot.docs.forEach(doc => {
-        channelsRslt.push({
-          id: doc.id,
-          channel: doc.data(),
-        })
-      })
-      setChannels(channelsRslt)
-    })
-  }, [])
+  const { documents: channels }: { documents: Channel[] } = useCollection(
+    COLLECTIONS.CHANNELS
+  )
 
   return (
     <div className='siderBar'>
