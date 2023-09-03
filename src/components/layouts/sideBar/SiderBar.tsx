@@ -6,11 +6,22 @@ import SideBarSettings from './SideBarSettings'
 import { COLLECTIONS } from '../../../consts/consts'
 import useCollection from '../../../hooks/useCollection'
 import { Channel } from '../../../models/Channel'
+import { addDoc, collection } from 'firebase/firestore'
+import { db } from '../../../firebase'
 
 const SiderBar = () => {
   const { documents: channels }: { documents: Channel[] } = useCollection(
     COLLECTIONS.CHANNELS
   )
+
+  const addChannel = async () => {
+    let channelName = prompt('Create new channel')
+    if (channelName) {
+      await addDoc(collection(db, COLLECTIONS.CHANNELS), {
+        channelName,
+      })
+    }
+  }
 
   return (
     <div className='siderBar'>
@@ -34,7 +45,7 @@ const SiderBar = () => {
               <ExpandMore />
               <h4>チャンネル親</h4>
             </div>
-            <Add className='channel-add lead' />
+            <Add className='channel-add lead' onClick={addChannel} />
           </div>
           <div className='channels-list'>
             {channels.map(channel => (
