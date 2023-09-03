@@ -1,12 +1,18 @@
 import React from 'react'
+import { Channel } from '../../../models/Channel'
 import './SideBarChannel.scss'
 
-function SiderChannel() {
+type Props = {
+  id: string
+  channel: Channel
+}
+
+const SiderChannel = ({ id, channel }: Props) => {
   return (
     <div className='sideBarChannel'>
       <h5>
         <span className='sideBarChannel-hash'>#</span>
-        チャンネル名
+        {channel.channel.channelName}
       </h5>
     </div>
   )

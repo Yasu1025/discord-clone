@@ -1,10 +1,30 @@
 import { Add, ExpandMore } from '@mui/icons-material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SideBarChannel from './SideBarChannel'
 import './SideBar.scss'
 import SideBarSettings from './SideBarSettings'
+import { onSnapshot, collection, query } from 'firebase/firestore'
+import { db } from '../../../firebase'
+import { COLLECTIONS } from '../../../consts/consts'
+import { Channel } from '../../../models/Channel'
 
-function SiderBar() {
+const SiderBar = () => {
+  const [channels, setChannels] = useState<Channel[]>([])
+  const q = query(collection(db, COLLECTIONS.CHANNELS))
+
+  useEffect(() => {
+    onSnapshot(q, querySnapshot => {
+      const channelsRslt: Channel[] = []
+      querySnapshot.docs.forEach(doc => {
+        channelsRslt.push({
+          id: doc.id,
+          channel: doc.data(),
+        })
+      })
+      setChannels(channelsRslt)
+    })
+  }, [])
+
   return (
     <div className='siderBar'>
       <div className='sideBar-left'>
@@ -30,9 +50,13 @@ function SiderBar() {
             <Add className='channel-add lead' />
           </div>
           <div className='channels-list'>
-            <SideBarChannel />
-            <SideBarChannel />
-            <SideBarChannel />
+            {channels.map(channel => (
+              <SideBarChannel
+                key={channel.id}
+                id={channel.id}
+                channel={channel}
+              />
+            ))}
           </div>
           <SideBarSettings />
         </div>

@@ -4,7 +4,7 @@ import { auth } from '../../../firebase'
 import { useAppSelector } from '../../../store/hooks'
 import './SideBarSettings.scss'
 
-function SideBarFooter() {
+const SideBarFooter = () => {
   const user = useAppSelector(state => state.user)
 
   return (
