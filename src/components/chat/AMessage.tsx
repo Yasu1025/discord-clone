@@ -15,7 +15,9 @@ export const AMessage = ({ message }: Props) => {
         <h4>
           {message.user.name}
           <span className='message-timestamp'>
-            {new Date(message.timestamp.toDate()).toLocaleString()}
+            {message.timestamp
+              ? new Date(message.timestamp.toDate()).toLocaleString()
+              : null}
           </span>
         </h4>
         <p>{message.message}</p>

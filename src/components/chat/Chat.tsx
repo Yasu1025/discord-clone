@@ -1,9 +1,4 @@
-import {
-  collection,
-  CollectionReference,
-  DocumentData,
-  onSnapshot,
-} from 'firebase/firestore'
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { COLLECTIONS } from '../../consts/consts'
 import { db } from '../../firebase'
@@ -20,14 +15,19 @@ export const Chat = () => {
 
   useEffect(() => {
     if (!channel.channelId) return
-    let collectionRef: CollectionReference<DocumentData> = collection(
+    let collectionRef = collection(
       db,
       COLLECTIONS.CHANNELS,
       channel.channelId,
       COLLECTIONS.MESSAGES
     )
 
-    onSnapshot(collectionRef, snapshot => {
+    const collectionRefOrderBy = query(
+      collectionRef,
+      orderBy('timeStamp', 'asc')
+    )
+
+    onSnapshot(collectionRefOrderBy, snapshot => {
       const rslt: Message[] = []
       snapshot.docs.forEach(doc =>
         rslt.push({

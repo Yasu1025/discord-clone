@@ -47,7 +47,6 @@ export const ChatInput = ({ channelId }: Props) => {
       }
     )
 
-    console.log(docRef)
     setInputText('')
   }
 
@@ -61,6 +60,7 @@ export const ChatInput = ({ channelId }: Props) => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setInputText(e.target.value)
           }
+          value={inputText}
         />
         <button
           type='submit'
