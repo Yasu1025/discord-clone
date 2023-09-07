@@ -5,7 +5,7 @@ import { useAppSelector } from '../../../store/hooks'
 import './SideBarSettings.scss'
 
 const SideBarFooter = () => {
-  const user = useAppSelector(state => state.user)
+  const user = useAppSelector(state => state.user.user)
 
   return (
     <div className='sidebar-settings'>

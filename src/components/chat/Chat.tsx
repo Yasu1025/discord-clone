@@ -1,21 +1,60 @@
-import React from 'react'
+import {
+  collection,
+  CollectionReference,
+  DocumentData,
+  onSnapshot,
+} from 'firebase/firestore'
+import React, { useEffect, useState } from 'react'
+import { COLLECTIONS } from '../../consts/consts'
+import { db } from '../../firebase'
+import { ChannelInfo, Message } from '../../models/Channel'
+import { useAppSelector } from '../../store/hooks'
 import './Chat.scss'
-import ChatHeader from './ChatHeader'
-import ChatInput from './ChatInput'
-import Message from './Message'
+import { ChatHeader } from './ChatHeader'
+import { ChatInput } from './ChatInput'
+import { AMessage } from './AMessage'
 
-function Chat() {
+export const Chat = () => {
+  const channel: ChannelInfo = useAppSelector(state => state.channel)
+  const [messages, setMessages] = useState<Message[]>([])
+
+  useEffect(() => {
+    if (!channel.channelId) return
+    let collectionRef: CollectionReference<DocumentData> = collection(
+      db,
+      COLLECTIONS.CHANNELS,
+      channel.channelId,
+      COLLECTIONS.MESSAGES
+    )
+
+    onSnapshot(collectionRef, snapshot => {
+      const rslt: Message[] = []
+      snapshot.docs.forEach(doc =>
+        rslt.push({
+          message: doc.data().message,
+          timestamp: doc.data().timeStamp,
+          user: doc.data().user,
+        })
+      )
+
+      setMessages(rslt)
+    })
+  }, [channel.channelId])
   return (
     <div className='chat-wrap'>
-      <ChatHeader />
-      <div className='chat-msg-wrap'>
-        <Message />
-        <Message />
-        <Message />
-      </div>
-      <div className='chat-input-wrap'>
-        <ChatInput />
-      </div>
+      {channel.channelId ? (
+        <>
+          <ChatHeader channel={channel} />
+          <div className='chat-msg-wrap'>
+            {messages.map((message, index) => (
+              <AMessage key={index} message={message} />
+            ))}
+          </div>
+          <div className='chat-input-wrap'>
+            <ChatInput channelId={channel.channelId} />
+          </div>
+        </>
+      ) : null}
     </div>
   )
 }

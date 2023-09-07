@@ -7,15 +7,20 @@ import {
   Send,
 } from '@mui/icons-material'
 import React from 'react'
+import { ChannelInfo } from '../../models/Channel'
 import './ChatHeader.scss'
 
-function ChatHeader() {
+type Props = {
+  channel: ChannelInfo
+}
+
+export const ChatHeader = ({ channel }: Props) => {
   return (
     <div className='chatHeader'>
       <div className='chatHeader-left'>
         <h3>
           <span className='chatHeader-hash'>#</span>
-          Chat Header
+          {channel.channelName}
         </h3>
       </div>
       <div className='chatHeader-right'>
@@ -32,5 +37,3 @@ function ChatHeader() {
     </div>
   )
 }
-
-export default ChatHeader

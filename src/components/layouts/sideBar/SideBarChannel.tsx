@@ -1,5 +1,7 @@
 import React from 'react'
-import { Channel } from '../../../models/Channel'
+import { Channel, ChannelInfo } from '../../../models/Channel'
+import { setChannelInfo } from '../../../store/feature/channelSlice'
+import { useAppDispatch } from '../../../store/hooks'
 import './SideBarChannel.scss'
 
 type Props = {
@@ -8,11 +10,21 @@ type Props = {
 }
 
 const SiderChannel = ({ id, channel }: Props) => {
+  const channelName: string = channel.channel.channelName
+  const dispatch = useAppDispatch()
+
+  const onSelectChannel = (channelInfo: ChannelInfo) => {
+    dispatch(setChannelInfo(channelInfo))
+  }
+
   return (
-    <div className='sideBarChannel'>
+    <div
+      className='sideBarChannel'
+      onClick={() => onSelectChannel({ channelId: id, channelName })}
+    >
       <h5>
         <span className='sideBarChannel-hash'>#</span>
-        {channel.channel.channelName}
+        {channelName}
       </h5>
     </div>
   )
